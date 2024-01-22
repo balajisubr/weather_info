@@ -1,0 +1,27 @@
+Weather info for your address<br/>
+<% if @weather_data[:error] %>
+An error occured
+<%= @weather_data[:error] %>
+<% else %>
+<% current_data = @weather_data[:current_data] %>
+Location: <%= current_data[:location][:name]%>, <%=current_data[:location][:region] %></br>
+Weather: <%= current_data[:temp] %></br>
+Condition: <%= current_data[:condition] %></br>
+Feels Like: <%= current_data[:feelslike] %></br>
+<% forecast_data = @weather_data[:forecast_data] %>
+Weather forecast for upcoming days
+<table>
+  <tr>
+   <th>Date</th>
+   <th>Max Temperature</th>
+   <th>Min Temperature</th>
+  </tr>
+  <% forecast_data.each do |d| %>
+  <tr>
+    <td><%= d[:date] %></td>
+    <td><%= d[:maxtemp] %></td>
+    <td><%= d[:mintemp] %></td>
+  </tr>
+ <% end %>
+</table>
+<% end %>
