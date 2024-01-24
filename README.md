@@ -15,6 +15,7 @@
 * API Used
   * weatherapi.com has been used and can make 1 million free calls per month
   * API Key has been defined in config/weather_api.yml
+  * API supports zipcodes throughout the world. But the app has been developed considering US zipcodes
 
 * Routes
   There are two routes in use
