@@ -12,4 +12,13 @@
  *
  *= require_tree .
  *= require_self
- */
+*/
+
+.error {
+ color: red;
+}
+
+tr {
+text-align: center;
+vertical-align: middle;
+}

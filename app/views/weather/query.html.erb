@@ -1,7 +1,7 @@
-<p>Enter address ending in zipcode to get weather info</p>
+<h3>Enter address ending in zipcode to get weather info</h3>
 <%= form_with url: retrieve_weather_info_path, local: true, method: :get do %>
   <% if local_assigns.has_key? :error_msg %>
-    <p><%= error_msg %></p>
+    <p class="error"><%= error_msg %></p>
   <% end %>
   Unit:
   <%= radio_button_tag 'unit', 'fahrenheit', true %>Fahrenheit

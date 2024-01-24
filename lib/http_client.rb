@@ -10,10 +10,6 @@ attr_accessor :error_msg, :body
     @response = HTTParty.get(@url)
   end
   
-  def response_code
-    @response.code
-  end
-  
   def body
     JSON.parse(@response.body)
   end
@@ -22,5 +18,11 @@ attr_accessor :error_msg, :body
     return @response['error']['message'] if response_code != 200
   
     nil
+  end
+
+  private
+
+  def response_code
+    @response.code
   end
 end

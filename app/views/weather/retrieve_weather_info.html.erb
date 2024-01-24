@@ -1,15 +1,17 @@
-Weather info for your address<br/>
-<% if @weather_data[:error] %>
+<h3>Weather info for your address</h3>
+<% weather_data = @info.data %>
+<% if weather_data[:error] %>
 An error occured
-<%= @weather_data[:error] %>
+<p class="error"><%= weather_data[:error] %></p>
 <% else %>
-<% current_data = @weather_data[:current_data] %>
+Unit: <%= @info.unit.capitalize %><br/>
+<% current_data = weather_data[:current_data] %>
 Location: <%= current_data[:location][:name]%>, <%=current_data[:location][:region] %></br>
 Weather: <%= current_data[:temp] %></br>
 Condition: <%= current_data[:condition] %></br>
 Feels Like: <%= current_data[:feelslike] %></br>
-<% forecast_data = @weather_data[:forecast_data] %>
-Weather forecast for upcoming days
+<% forecast_data = weather_data[:forecast_data] %>
+<h3>Weather forecast for upcoming days</h3>
 <table>
   <tr>
    <th>Date</th>
@@ -24,4 +26,10 @@ Weather forecast for upcoming days
   </tr>
  <% end %>
 </table>
+<% if @info.cached %>
+Note: Data pulled within last 30 minutes<br/>
+<% else %>
+Note: Data pulled just now<br/>
 <% end %>
+<% end %>
+<a href="/query_weather">Back to query form</a>

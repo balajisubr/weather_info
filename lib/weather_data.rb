@@ -1,6 +1,7 @@
-require 'httparty'
 class WeatherData
-  attr_accessor :data, :cached
+  FAHRENHEIT = 'fahrenheit'
+  CELSIUS = 'celsius'
+  attr_accessor :data, :cached, :unit
   def initialize(zip_code, unit)
     @zip_code = zip_code
     @cached = true
@@ -13,6 +14,8 @@ class WeatherData
       latest_data
     end
   end
+
+  private
 
   def latest_data
     client = HttpClient.new(url)
@@ -57,23 +60,25 @@ class WeatherData
     "http://api.weatherapi.com/v1/forecast.json?key=#{WEATHER_API_KEY}&q=#{@zip_code}&days=10&aqi=no&alerts=no"
   end
 
+  # Cache based on zip code and unit
   def cache_key
-    "weather_#{@zip_code}"
+    "weather_#{@zip_code}_#{@unit}"
   end
 
+  #Helper methods for keys to look up API response based on unit
   def unit_temp_key
-    @unit == "fahrenheit" ? "temp_f" : "temp_c"
+    @unit == FAHRENHEIT ? "temp_f" : "temp_c"
   end
 
   def unit_feelslike_key
-    @unit == "fahrenheit" ? "feelslike_f" : "feelslike_c"
+    @unit == FAHRENHEIT ? "feelslike_f" : "feelslike_c"
   end
 
   def unit_maxtemp_key
-    @unit == "fahrenheit" ? "maxtemp_f" : "maxtemp_c"
+    @unit == FAHRENHEIT ? "maxtemp_f" : "maxtemp_c"
   end
 
   def unit_mintemp_key
-    @unit == "fahrenheit" ? "mintemp_f" : "mintemp_c"
+    @unit == FAHRENHEIT ? "mintemp_f" : "mintemp_c"
   end
 end

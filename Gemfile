@@ -41,8 +41,6 @@ gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem "pry"
-
 gem "httparty"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -51,6 +49,9 @@ gem "httparty"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  gem "pry"
+  gem 'rspec-rails', '4.0.1'
+  gem 'capybara'
 end
 
 group :development do
@@ -69,4 +70,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
 end
